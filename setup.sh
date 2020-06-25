@@ -13,3 +13,15 @@ ln -s ${BASEDIR}/zshrc ~/.zshrc
 
 # Alacritty
 ln -s ${BASEDIR}/alacritty/ ~/.config/
+
+ln -s ${BASEDIR}/gtk-2.0/ ~/.config/
+ln -s ${BASEDIR}/gtk-3.0/ ~/.config/
+
+
+ln -s ${BASEDIR}/fonts/ ~/.local/share/
+
+ln -s ${BASEDIR}/bspwm/ ~/.config/
+ln -s ${BASEDIR}/sxhkd/ ~/.config/
+
+ln -s ${BASEDIR}/ranger/ ~/.config/
+ln -s ${BASEDIR}/zathura/ ~/.config/
