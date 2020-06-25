@@ -1,0 +1,257 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   My polybar rice
+;
+;==========================================================
+
+[colors]
+
+;morhetz gruvbox palette
+
+bg = #282828
+bg1 = #3c3836
+bg2 = #504945
+bg3 = #665c54
+bg4 = #7c6f64
+
+fg = #ebdbb2
+
+red = #cc241d
+green = #98971a
+yellow = #d79921
+blue = #458588
+purple = #b16286
+aqua = #689d6a
+orange = #d65d0e
+
+gray = #928374
+
+[bar/myricedbar]
+
+; Tell WM to not reserve space for bar
+override-redirect = true
+
+enable-icp = true
+
+; Do not place bar att bottom
+bottom = false
+
+width = 100%
+height = 20
+
+; 
+offset-x = 0
+offset-y = 0
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+radius = 0
+
+line-size = 0
+;line-color = #f00
+
+fixed-center = true
+
+;border-left-size = 1
+;border-right-size = 1
+
+border-size = 0
+border-color = ${colors.fg}
+
+padding-left = 0
+padding-right = 2
+
+module-margin = 2
+
+; FONTS =====================================================
+font-0 = fixed:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = FiraCode Nerd Font Mono:fontformat=truetype:size=13;3
+font-3 = "Material Icons:size=13;4"
+
+;:antialias=false;0
+;============================================================
+
+modules-left = bspwm
+modules-center = date
+modules-right = pulseaudio xkeyboard memory cpu wlan
+
+wm-restack = bspwm
+
+cursor-click = default
+cursor-scrill = ns-resize
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+
+; MODULES ===================================================
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+inline-mode = false
+enable-click = true
+enable-scroll  = false
+reverse-scroll  = false
+
+fuzzy-match = false
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
+format = <label-state>
+
+label-focused = %name%%icon% 
+label-focused-background = ${colors.orange}
+label-focused-padding = 2
+
+label-occupied = %name%%icon% 
+label-occupied-padding = 2
+
+label-urgent = %name%%icon%!
+label-urgent-background = ${colors.red}
+label-urgent-padding = 2
+
+label-empty = %name%%icon% 
+label-empty-foreground = ${colors.bg4}
+label-empty-padding = 2
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = %Y-%m-%d%
+
+time = %H:%M
+
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+
+format = <label>
+format-background = ${colors.bg}
+format-foreground = ${colors.fg}
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+use-ui-max = false
+
+interval = 5
+
+format-volume = <ramp-volume> <label-volume>
+
+format-muted = <label-muted>
+
+label-volume = %percentage%%
+
+label-muted =  
+label-muted-foreground = ${colors.bg4}
+
+ramp-volume-0 = " "
+ramp-volume-1 = " "
+ramp-volume-2 = " "
+
+[module/memory]
+type = internal/memory
+
+interval = 3
+format = <label>
+label =  %gb_used%/%gb_free%
+
+[module/cpu]
+type = internal/cpu
+
+interval = 1
+format = <label>
+
+label = " %percentage%%"
+
+[module/wlan]
+type = internal/network
+interface = wlp35s0
+
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid% %downspeed:9%
+label-connected-foreground = ${colors.fg}
+ramp-signal-0 =  1
+ramp-signal-1 =  2
+ramp-signal-2 =  3
+ramp-signal-3 =  4
+ramp-signal-4 =  5
+ramp-signal-5 =  6
+ramp-signal-foreground = ${colors.fg}
+
+
+format-disconnected = <label-disconnected>
+label-disconnected = " "
+label-disconnected-foreground = ${colors.bg4}
+
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+
+; Default: %ifname% %local_ip%
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.fg}
+
+label-layout = %layout%
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.bg}
+
+
+; END OF INTERNAL MODULES SECTION ===========================
+
+; CUSTOM MODULES ============================================
+
+;============================================================
+[global/wm]
+
+margin-bottom = 0
+
+[settings]
+
+throttle-output = 5
+throttle-output-for = 10
+
+throttle-input-for = 30
+
+
+
+; vim:ft=dosini
