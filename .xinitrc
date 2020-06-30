@@ -32,7 +32,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-setxkbmap -layout gb,se -option grp:rctrl_toggle
+setxkbmap -layout gb,se -option grp:rctrl_toggle -option caps:super
+killall xcape 2> /dev/null ; xcape -e 'Super_L=Escape'
+
 feh --bg-fill ~/.config/wallpaper/cozygruvbox.jpg
 picom --config ~/.config/picom/picom.conf -b
 
