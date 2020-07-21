@@ -54,9 +54,8 @@ XF86AudioLowerVolume
 shift + XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume 1 {+5%,-5%}
 
-Print
-    flameshot full -p ~/Documents
-
+XF86Calculator
+    maim -s -u | xclip -selection clipboard -t image/png -i
 
 #
 # state/flags
